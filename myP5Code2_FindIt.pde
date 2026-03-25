@@ -1,11 +1,18 @@
 var starXPos = [];
 var starYPos = [];
-var star = "⭐️";
+var star = "⚽";
 var starTotal = 100;
+
+var GoatXPos = [];
+var GoatYPos = [];
+var Goat = "🐐;
+var GoatTotal  = 3;
+var GoatFound = 0;
+
 
 var planetXPos = [];
 var planetYPos = [];
-var planet = "🪐";
+var planet = "🐀";
 var planetTotal = 3;
 var planetFound = 0;
 
@@ -16,7 +23,18 @@ setup = function() {
 }
 
 draw = function(){   
-
+ 
+  
+  background(255, 255, 247);
+  stroke(173,222,237);
+  //for(start; how long; change)
+  for(var x=0; x<400; x+=20){
+    line(0, x, 400, x);
+    }
+    for(var i = 55; i < 350 ; i+=20){
+      text('🐀', 50, i)
+    }
+  
    if(keyPressed){
     if(key == 'r'){
       reset();
