@@ -1,39 +1,30 @@
 var starXPos = [];
 var starYPos = [];
 var star = "⚽";
-var starTotal = 100;
+var starTotal = 100; // Number of soccer ball distractions
 
-var GoatXPos = [];
-var GoatYPos = [];
-var Goat = "🐐;
-var GoatTotal  = 3;
-var GoatFound = 0;
-
+var ratXPos = [];
+var ratYPos = [];
+var rat = "🐀";
+var ratTotal = 50; // Number of rat distractions
 
 var planetXPos = [];
 var planetYPos = [];
-var planet = "🐀";
-var planetTotal = 3;
-var planetFound = 0;
+var planet = "🐐";
+var planetTotal = 3; // Number of goats to find
+var planetFound = 0; // Counter for found goats
 
-setup = function() {
+var mySoccer = ["Ronaldos the Goat!", "Messis the Goat"]; // Array for soccer text
+
+
+setup = function() { // Setup function initializes the canvas and calls reset
    size(600, 450); 
 
    reset();
 }
 
-draw = function(){   
- 
-  
-  background(255, 255, 247);
-  stroke(173,222,237);
-  //for(start; how long; change)
-  for(var x=0; x<400; x+=20){
-    line(0, x, 400, x);
-    }
-    for(var i = 55; i < 350 ; i+=20){
-      text('🐀', 50, i)
-    }
+draw = function(){ // Draw function handles key presses and displays the game
+   
   
    if(keyPressed){
     if(key == 'r'){
@@ -49,7 +40,7 @@ mouseClicked = function(){
   check(mouseX, mouseY);
 }
 
-var check = function(xClick, yClick){
+var check = function(xClick, yClick){ // Check function detects if click is near a goat
   for(var i = 0; i < planetXPos.length; i++){
     if(dist(xClick - 5, yClick - 5, planetXPos[i], planetYPos[i])<15){
       planetXPos.splice(i, 1);
@@ -62,6 +53,10 @@ var check = function(xClick, yClick){
 var display = function(){
   background(100,100,100);
 
+  fill(255,0,0);
+  text(mySoccer[0],40,40);
+  text(mySoccer[1],40,50);
+
   fill(200,200,0);
   textSize(20);
 
@@ -71,6 +66,10 @@ var display = function(){
 
   for(var i = 0; i < starXPos.length; i ++){
     text(star, starXPos[i], starYPos[i]);
+  }
+
+  for(var i = 0; i < ratXPos.length; i ++){
+    text(rat, ratXPos[i], ratYPos[i]);
   }
 
   fill(0,0,0);
@@ -85,9 +84,11 @@ var display = function(){
   }
 }
 
-var reset = function(){
+var reset = function(){ // Reset function clears and reinitializes all positions
   starXPos = [];
   starYPos = [];
+  ratXPos = [];
+  ratYPos = [];
   planetXPos = [];
   planetYPos = [];
   planetFound = 0;
@@ -96,6 +97,13 @@ var reset = function(){
   for(var i = 0; i < starTotal; i++){
     starXPos.push(random(0,600));
     starYPos.push(random(0,400));
+  }
+
+  var i = 0; // While loop to place rats
+  while (i < ratTotal) {
+    ratXPos.push(random(0,600));
+    ratYPos.push(random(0,400));
+    i++;
   }
 
   for(var i = 0; i < planetTotal; i++){
